@@ -26,6 +26,12 @@ module PrivatePhotos
     # -- all .rb files in that directory are automatically loaded.
 
     # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.system_tests = nil
+      g.helper false
+      g.assets false
+      g.stylesheets false
+      g.javascripts false
+    end
   end
 end
