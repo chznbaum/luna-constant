@@ -40,6 +40,7 @@ GEM
       tzinfo (~> 1.1)
     arel (8.0.0)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
@@ -58,6 +59,9 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise_invitable (1.7.2)
+      actionmailer (>= 4.1.0)
+      devise (>= 4.0.0)
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -179,6 +183,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.3)
+  devise_invitable (~> 1.7, >= 1.7.2)
   jbuilder (~> 2.5)
   pg (~> 0.18)
   pry
