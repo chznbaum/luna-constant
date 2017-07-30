@@ -1,5 +1,7 @@
 class Photo < ApplicationRecord
-  validates_presence_of :photo_upload
+  validates_presence_of :photo_upload, :status
+
+  enum status: { "Pending" => 0, "Approved" => 1 }
 
   mount_uploader :photo_upload
   
@@ -9,5 +11,9 @@ class Photo < ApplicationRecord
     self.user_id = user.id
     
     self.save!
+  end
+
+  def self.by_recent
+    order("created_at DESC")
   end
 end

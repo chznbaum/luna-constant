@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @photos = Photo.where(:status => "Approved").by_recent
     @page_title = "#{@child_name}'s Photos"
   end
 
@@ -68,6 +68,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:photo_upload, :caption, :user_id)
+      params.require(:photo).permit(:photo_upload, :caption, :user_id, :status, :created_at)
     end
 end

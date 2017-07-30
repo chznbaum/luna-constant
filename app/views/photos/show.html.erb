@@ -1,7 +1,7 @@
 <figure>
 <%= image_tag @photo.photo_upload %>
   <figcaption>
-    <%= @photo.caption %> | Posted <%= distance_of_time_in_words(@photo.created_at, Time.now) %> ago by <%= @photo.user.email %>
+    <%= @photo.caption %> | Taken <%= distance_of_time_in_words(@photo.created_at, Time.now) %> ago and posted by <%= @photo.user.email %>
   </figcaption>
 </figure>
 <%= link_to 'Edit', edit_photo_path(@photo) %> |

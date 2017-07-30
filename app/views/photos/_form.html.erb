@@ -23,6 +23,18 @@
     <%= form.text_field :caption, id: :photo_caption %>
   </div>
 
+  <div class="field">
+    <%= form.label :created_at, "Date taken" %>
+    <%= form.date_field :created_at, value: (photo.created_at || Time.now) %>
+  </div>
+
+  <div class="field">
+    <% Photo.statuses.keys.each do |status| %>
+      <%= form.radio_button :status, status %>
+      <%= form.label "#{status}_#{status.parameterize.underscore}", status.to_sym %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
