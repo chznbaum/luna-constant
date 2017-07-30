@@ -1,10 +1,12 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /photos
   # GET /photos.json
   def index
     @photos = Photo.all
+    @page_title = "#{@child_name}'s Photos"
   end
 
   # GET /photos/1
@@ -24,7 +26,9 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
+    @user = current_user
     @photo = Photo.new(photo_params)
+    @photo.set_user!(current_user)
 
     respond_to do |format|
       if @photo.save

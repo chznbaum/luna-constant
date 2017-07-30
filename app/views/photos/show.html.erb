@@ -1,19 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Photo upload:</strong>
-  <%= @photo.photo_upload %>
-</p>
-
-<p>
-  <strong>Caption:</strong>
-  <%= @photo.caption %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @photo.user %>
-</p>
-
+<figure>
+<%= image_tag @photo.photo_upload %>
+  <figcaption>
+    <%= @photo.caption %> | Posted <%= distance_of_time_in_words(@photo.created_at, Time.now) %> ago by <%= @photo.user.email %>
+  </figcaption>
+</figure>
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', photos_path %>

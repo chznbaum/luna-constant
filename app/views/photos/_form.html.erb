@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= image_tag @photo.photo_upload %>
+
   <div class="field">
     <%= form.label :photo_upload %>
     <%= form.file_field :photo_upload, id: :photo_photo_upload %>
@@ -19,11 +21,6 @@
   <div class="field">
     <%= form.label :caption %>
     <%= form.text_field :caption, id: :photo_caption %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :photo_user_id %>
   </div>
 
   <div class="actions">
