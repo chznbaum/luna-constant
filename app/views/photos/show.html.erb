@@ -4,5 +4,5 @@
     <%= @photo.caption %> | Taken <%= distance_of_time_in_words(@photo.created_at, Time.now) %> ago and posted by <%= @photo.user.email %>
   </figcaption>
 </figure>
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Edit', edit_photo_path(@photo) if logged_in?(:site_admin, :helper) %>
 <%= link_to 'Back', photos_path %>

@@ -8,8 +8,8 @@
   </figcaption>
   </figure>
   <%= link_to 'Show', photo %>
-  <%= link_to 'Edit', edit_photo_path(photo) %>
-  <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_photo_path(photo) if logged_in?(:site_admin, :helper) %>
+  <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin, :helper) %>
 <% end %>
 
 <%= link_to 'New Photo', new_photo_path %>

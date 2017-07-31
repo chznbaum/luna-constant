@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # Authorization and authentication
 gem 'devise', '~> 4.3'
 gem 'devise_invitable', '~> 1.7', '>= 1.7.2'
+gem 'petergate', '~> 1.7', '>= 1.7.5'
 
 # Image management
 gem 'carrierwave', '~> 1.1'
