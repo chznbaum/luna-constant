@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'Home', root_url %>
+      <%= link_to 'Photos', photos_path %>
+      <%= link_to 'Invite Users', new_user_invitation_path if logged_in?(:site_admin, :helper) %>
+    </nav>
     <div class="notice"><%= notice %></div>
     <div class="alert"><%= alert %></div>
     <%= yield %>

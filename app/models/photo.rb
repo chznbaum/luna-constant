@@ -6,6 +6,7 @@ class Photo < ApplicationRecord
   mount_uploader :photo_upload
   
   belongs_to :user
+  has_many :comments, as: :commentable, dependent: :destroy
 
   def set_user!(user)
     self.user_id = user.id
