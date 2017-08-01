@@ -12,7 +12,6 @@ gem 'rails', '~> 5.1.2'
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-gem 'rack-timeout', '~> 0.4.2'
 # Use SCSS for stylesheets and Bootstrap 3
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
@@ -57,6 +56,10 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+end
+
+group :production do
+  gem 'rack-timeout', '~> 0.4.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

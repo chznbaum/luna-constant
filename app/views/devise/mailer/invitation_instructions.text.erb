@@ -1,6 +1,6 @@
-<%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %>
+Hello <%= @resource.first_name %>,
 
-<%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %>
+Someone has invited you to <%= root_url %>, the private photo-sharing website for Tatiana Constant's new daughter Luna. You can accept it through the link below.
 
 <%= accept_invitation_url(@resource, :invitation_token => @token) %>
 
@@ -9,3 +9,10 @@
 <% end %>
 
 <%= strip_tags t("devise.mailer.invitation_instructions.ignore") %>
+
+Thanks,
+
+Chazona Baum
+Tatiana's sister
+
+P.S.: I am managing this website for Tatiana. If you have any questions or concerns, or notice any buggy site behavior, please feel free to contact me at <%= link_to 'chazona@chazonabaum.com', 'mailto:chazona@chazonabaum.com' %> rather than Tatiana directly.
