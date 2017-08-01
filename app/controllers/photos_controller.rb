@@ -6,8 +6,11 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.where(:status => "Approved").by_recent
-    @page_title = "#{@child_name}'s Photos"
+    if current_user.has_role?(:site_admin, :helper)
+      @photos = Photo.by_recent
+    else
+      @photos = Photo.where(:status => "Approved").by_recent
+    end
   end
 
   # GET /photos/1

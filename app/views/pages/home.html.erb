@@ -1,8 +1,9 @@
-<h1><%= @site_title %></h1>
-<p>The homepage of <%= @child_name %>'s photos.</p>
-
-<% if current_user.is_a?(GuestUser) %>
-  <%= link_to 'Log In', new_user_session_url %>
-<% else %>
-  <%= link_to 'Log Out', destroy_user_session_url, method: :delete %>
-<% end %>
+<% provide(:title, "Home") %>
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1><%= @site_title %></h1>
+      <p>The homepage of <%= @child_name %>'s photos.</p>
+    </div>
+  </div>
+</div>

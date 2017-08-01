@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= @page_title %> | <%= @site_title %></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= yield(:title) %> | <%= @site_title %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,16 +12,40 @@
   </head>
 
   <body>
-    <nav>
-      <%= link_to 'Home', root_url %>
-      <%= link_to 'Photos', photos_path %>
-      <%= link_to 'Invite Users', new_user_invitation_path if logged_in?(:site_admin, :helper) %>
+    <%= link_to 'Skip to main content', '#content', class: 'sr-only sr-only-focusable' %>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primaryNavCollapse" aria-expanded="false">Menu</button>
+          <%= link_to "#{@child_name}'s Photo Site", root_url, class: 'navbar-brand' %>
+        </div>
+        <div class="collapse navbar-collapse" id="#primaryNavCollapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Photos', photos_path %></li>
+            <li><%= link_to 'Invite Users', new_user_invitation_path if logged_in?(:site_admin, :helper) %></li>
+              <% if current_user.is_a?(GuestUser) %>
+                <li><%= link_to 'Log In', new_user_session_url %></li>
+              <% else %>
+                <li><%= link_to 'Log Out', destroy_user_session_url, method: :delete %></li>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
-    <div class="notice"><%= notice %></div>
-    <div class="alert"><%= alert %></div>
-    <%= yield %>
-    <footer>
-      © 2017 <%= @mom_name %>. Developed by <%= link_to 'Chazona Baum', 'https://chazonabaum.com' %>.
+    <% if notice %>
+      <div class="alert alert-info"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-warning"><%= alert %></div>
+    <% end %>
+    <main id="content" tabindex="-1">
+      <%= yield %>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">© 2017 <%= @mom_name %>. Developed by <%= link_to 'Chazona Baum', 'https://chazonabaum.com' %>.</p>
+      </div>
     </footer>
   </body>
 </html>

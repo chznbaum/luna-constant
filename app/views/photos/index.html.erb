@@ -1,15 +1,23 @@
-<h1><%= @page_title %></h1>
-
-<% @photos.each do |photo| %>
-  <figure>
-  <%= image_tag photo.photo_upload %>
-  <figcaption>
-    <%= photo.caption %> | Taken <%= distance_of_time_in_words(photo.created_at, Time.now) %> ago and posted by <%= photo.user.email %> | <%= pluralize(photo.comments.count, "comment") %>
-  </figcaption>
-  </figure>
-  <%= link_to 'Show', photo %>
-  <%= link_to 'Edit', edit_photo_path(photo) if logged_in?(:site_admin, :helper) %>
-  <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin, :helper) %>
-<% end %>
-
-<%= link_to 'New Photo', new_photo_path %>
+<% provide(:title, "#{@child_name}'s Photos") %>
+<div class="container">
+  <h1><%= yield(:title) %></h1>
+  <p>
+    <%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary', role: 'button' %>
+  </p>
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= image_tag photo.photo_upload, class: "thumb" %>
+          <div class="caption">
+            <p><%= photo.caption %></p>
+            <p>Taken <%= distance_of_time_in_words(photo.created_at, Time.now) %> ago | <%= pluralize(photo.comments.count, "comment") %></p>
+            <p><%= link_to 'Show', photo, class: 'btn btn-primary', role: 'button' %>
+            <%= link_to 'Edit', edit_photo_path(photo), class: 'btn btn-warning', role: 'button' if logged_in?(:site_admin, :helper) %>
+            <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', role: 'button' if logged_in?(:site_admin, :helper) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

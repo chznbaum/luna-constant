@@ -1,17 +1,20 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
+<% provide(:title, "#{ t "devise.invitations.new.header" }") %>
+<div class="container">
+  <h2><%= yield(:title) %></h2>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-  <%= devise_error_messages! %>
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
 
-  <p><%= f.submit t("devise.invitations.new.submit_button") %></p>
-<% end %>
+    <p><%= f.submit t("devise.invitations.new.submit_button"), class: 'btn btn-primary' %></p>
+  <% end %>
+</div>
