@@ -134,6 +134,7 @@ GEM
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.4.2)
     rails (5.1.2)
       actioncable (= 5.1.2)
       actionmailer (= 5.1.2)
@@ -228,6 +229,7 @@ DEPENDENCIES
   pry
   pry-byebug
   puma (~> 3.7)
+  rack-timeout (~> 0.4.2)
   rails (~> 5.1.2)
   sass-rails (~> 5.0)
   turbolinks (~> 5)
