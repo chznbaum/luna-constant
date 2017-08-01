@@ -6,9 +6,8 @@ module DefaultPageContent
   end
 
   def set_page_defaults
-    @mom_name = "Default Name"
-    @child_name = "Change Me"
+    @mom_name = "Tatiana Constant"
+    @child_name = "Luna Constant"
     @site_title = "#{@child_name}'s Photo Site"
-    @page_title = ""
   end
 end
