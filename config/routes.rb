@@ -6,11 +6,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, :skip => [:registrations], :controllers => { :invitations => 'invitations' }
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, :skip => [:registrations], :controllers => { :invitations => 'invitations' }, constraints: {protocol: /https/}
   as :user do
-    get '/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    patch '/' => 'devise/registrations#update', :as => 'user_registration'
-    put '/' => 'devise/registrations#update'
+    get '/edit' => 'devise/registrations#edit', :as => 'edit_user_registration', constraints: {protocol: /https/}
+    patch '/' => 'devise/registrations#update', :as => 'user_registration', constraints: {protocol: /https/}
+    put '/' => 'devise/registrations#update', constraints: {protocol: /https/}
   end
   
   root 'pages#home'
