@@ -1,9 +1,16 @@
 <% provide(:title, "#{@child_name}'s Photos") %>
 <div class="container">
-  <h1><%= yield(:title) %></h1>
-  <p>
-    <%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary', role: 'button' %>
-  </p>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><%= yield(:title) %></h1>
+      <p>
+        <%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary', role: 'button' %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <%= paginate @photos %>
+  </div>
   <div class="row">
     <% @photos.each do |photo| %>
       <div class="col-sm-6 col-md-4">
@@ -19,5 +26,8 @@
         </div>
       </div>
     <% end %>
+  </div>
+  <div class="row">
+    <%= paginate @photos %>
   </div>
 </div>
