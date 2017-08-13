@@ -7,9 +7,9 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     if current_user.has_role?(:site_admin, :helper)
-      @photos = Photo.by_recent.page(params[:page]).per(5)
+      @photos = Photo.by_recent.page(params[:page]).per(6)
     else
-      @photos = Photo.where(:status => "Approved").by_recent.page(params[:page]).per(5)
+      @photos = Photo.where(:status => "Approved").by_recent.page(params[:page]).per(6)
     end
   end
 
