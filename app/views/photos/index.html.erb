@@ -9,13 +9,17 @@
     </div>
   </div>
   <div class="row">
-    <%= paginate @photos %>
+    <div class="col-sm-12">
+      <%= paginate @photos %>
+    </div>
   </div>
   <div class="row">
     <% @photos.each do |photo| %>
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <%= image_tag photo.photo_upload, class: "thumb" %>
+          <%= link_to photo do %>
+            <%= image_tag photo.photo_upload, class: "thumb" %>
+          <% end %>
           <div class="caption">
             <p><%= photo.caption %></p>
             <p>Taken <%= distance_of_time_in_words(photo.created_at, Time.now) %> ago | <%= pluralize(photo.comments.count, "comment") %></p>
@@ -28,6 +32,8 @@
     <% end %>
   </div>
   <div class="row">
-    <%= paginate @photos %>
+    <div class="col-sm-12">
+      <%= paginate @photos %>
+    </div>
   </div>
 </div>
