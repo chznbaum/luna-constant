@@ -22,6 +22,12 @@
         </div>
         <div class="media-body">
           <h2><%= user.name %></h2>
+          <p><strong>Role:</strong> <%= user.roles.first.to_s.capitalize %><br/>
+          <% if user.invitation_accepted_at.nil? %>
+            <strong>Invited</strong></p>
+          <% else %>
+            <strong>Active</strong> | <%= pluralize user.photos.count, 'photo' %> | <%= pluralize user.comments.count, 'comment' %></p>
+          <% end %>
         </div>
       </div>
     <% end %>
