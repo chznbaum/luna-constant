@@ -1,0 +1,25 @@
+<% provide(:title, "Users List") %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><%= yield(:title) %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= paginate @users %>
+    </div>
+  </div>
+  <div class="row user-list">
+    <% @users.each do |user| %>
+      <div class="col-sm-6 col-md-4 user-list-item">
+        <div class="media-left">
+          <%= gravatar_helper user %>
+        </div>
+        <div class="media-body">
+          <h2><%= user.name %></h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -49,3 +49,17 @@ body {
 .comment {
   margin-left: 2.5em;
 }
+.user-list-item {
+  margin-bottom: 1em;
+  .media-left {
+    img {
+      border-radius: 1em;
+    }
+  }
+  .media-body {
+    h2 {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+  }
+}

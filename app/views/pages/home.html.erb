@@ -7,6 +7,7 @@
       <p>
         <%= link_to 'Photos', photos_path, class: 'btn btn-primary' %>
         <%= link_to 'Invite Users', new_user_invitation_path, class: 'btn btn-default' if logged_in?(:site_admin, :helper) %>
+        <%= link_to 'Users List', users_path, class: 'btn btn-default' if logged_in?(:site_admin, :helper) %>
         <% if current_user.is_a?(GuestUser) %>
           <%= link_to 'Log In', new_user_session_url, class: 'btn btn-default' %>
         <% else %>

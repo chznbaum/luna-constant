@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     patch '/' => 'devise/registrations#update', :as => 'user_registration'
     put '/' => 'devise/registrations#update'
   end
+
+  get '/users/index', to: 'users#index', :as => 'users'
   
   root 'pages#home'
 
