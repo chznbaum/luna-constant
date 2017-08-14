@@ -1,6 +1,6 @@
 <div class="media-left">
   <% if !comment.user.avatar.file.nil? %>
-    <%= image_tag comment.user.avatar %>
+    <%= image_tag comment.user.avatar, class: 'avatar img-rounded' %>
   <% else %>
     <%= gravatar_helper comment.user %>
   <% end %>
