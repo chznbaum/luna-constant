@@ -14,7 +14,11 @@
     <% @users.each do |user| %>
       <div class="col-sm-6 col-md-4 user-list-item">
         <div class="media-left">
-          <%= gravatar_helper user %>
+          <% if !user.avatar.file.nil? %>
+            <%= image_tag user.avatar %>
+          <% else %>
+            <%= gravatar_helper user %>
+          <% end %>
         </div>
         <div class="media-body">
           <h2><%= user.name %></h2>

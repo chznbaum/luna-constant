@@ -12,7 +12,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :invitable
-  
+
+  mount_uploader :avatar, AvatarUploader
+
   validates_presence_of :name
   
   has_many :invitations, :class_name => :user, :as => :invited_by

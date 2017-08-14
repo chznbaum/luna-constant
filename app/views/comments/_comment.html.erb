@@ -1,5 +1,9 @@
 <div class="media-left">
-  <%= gravatar_helper comment.user %>
+  <% if !comment.user.avatar.file.nil? %>
+    <%= image_tag comment.user.avatar %>
+  <% else %>
+    <%= gravatar_helper comment.user %>
+  <% end %>
 </div>
 <div class="media-body">
   <p><%= comment.body %></p>
