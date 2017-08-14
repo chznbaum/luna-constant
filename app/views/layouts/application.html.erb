@@ -24,6 +24,7 @@
             <li><%= link_to 'Invite Users', new_user_invitation_path if logged_in?(:site_admin, :helper) %></li>
               <% if current_user.is_a?(GuestUser) %>
                 <li><%= link_to 'Log In', new_user_session_url %></li>
+                <li><%= link_to 'Request Invitation', new_request_path %></li>
               <% else %>
                 <li><%= link_to 'Edit Account', edit_user_registration_path %></li>
                 <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>

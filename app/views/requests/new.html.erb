@@ -1,0 +1,28 @@
+<% provide(:title, "Request Invitation") %>
+<div class="container">
+  <h2><%= yield(:title) %></h2>
+
+  <p>Please fill out and submit the following to get access to <%= @child_name %>'s photo site.</p>
+
+  <p>You should get an invitation within 24 hours so that you can set your password and have access.</p>
+
+  <%= form_for @request, url: create_request_url do |f| %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :how_they_know, "How you know #{@mom_name}" %>
+      <%= f.text_area :how_they_know, class: 'form-control'  %>
+    </div>
+
+    <p><%= f.submit "Request Invitation", class: 'btn btn-primary' %></p>
+  <% end %>
+</div>
