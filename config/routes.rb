@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
   get '/users/index', to: 'users#index', :as => 'users'
 
-  get 'request-invitation', to: 'requests#new', as: 'new_request'
+  get '/request-invitation', to: 'requests#new', as: 'new_request'
   post 'request-invitation', to: 'requests#create', as: 'create_request'
+
+  get '/faq', to: 'pages#faq', as: 'faq'
   
   root 'pages#home'
 
