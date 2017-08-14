@@ -15,7 +15,7 @@
       <div class="col-sm-6 col-md-4 user-list-item">
         <div class="media-left">
           <% if !user.avatar.file.nil? %>
-            <%= image_tag user.avatar, class: 'media-object img-rounded' %>
+            <%= image_tag user.avatar, class: 'media-object avatar img-rounded' %>
           <% else %>
             <%= gravatar_helper user %>
           <% end %>

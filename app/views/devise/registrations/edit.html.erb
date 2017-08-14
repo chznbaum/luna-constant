@@ -33,7 +33,7 @@
     </div>
 
     <% if !@user.avatar.file.nil? %>
-      <%= image_tag @user.avatar, class: 'img-responsive img-rounded' %>
+      <%= image_tag @user.avatar, class: 'img-responsive avatar img-rounded' %>
     <% else %>
       <%= image_tag "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@user.email)}", class: 'img-rounded' %>
     <% end %>
