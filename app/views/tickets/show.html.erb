@@ -1,0 +1,64 @@
+<% provide(:title, "Support: #{@ticket.title}") %>
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1><%= yield(:title) %></h1>
+      <% if @ticket.status != "Closed" %>
+        <p>View, reply to or close your support ticket.</p>
+      <% else %>
+        <p>View your closed support ticket.</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <%= link_to 'Back to Support', tickets_path, class: 'btn btn-default' %>
+        <% if @ticket.status != 'Closed' %>
+          <%= link_to 'Close Ticket', { controller: "tickets", action: "close_ticket", id: @ticket.id }, class: 'btn btn-danger' %>
+        <% else %>
+          <% if current_user.has_role?(:site_admin, :helper) %>
+            <%= link_to 'Open Ticket', { controller: "tickets", action: "open_ticket", id: @ticket.id }, class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class="list-group">
+        <% @messages.each do |message| %>
+          <li class="list-group-item support-item">
+            <div class="media">
+              <div class="media-left">
+                <% if !message.user.avatar.file.nil? %>
+                  <%= image_tag message.user.avatar, class: 'avatar img-rounded' %>
+                <% else %>
+                  <%= gravatar_helper message.user %>
+                <% end %>
+              </div>
+              <div class="media-body">
+                <p><%= message.message %></p>
+                <p><small>Posted <%= time_ago_in_words(message.created_at) %> ago by <strong><%= message.user.name %></strong></small></p>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <% if @ticket.status != "Closed" %>
+        <%= form_for @message, url: '#' do |f| %>
+          <div class="form-group">
+            <%= f.label :message, 'Response' %>
+            <%= f.text_area :message, class: 'form-control' %>
+          </div>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.submit 'Submit response', class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

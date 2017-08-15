@@ -1,0 +1,55 @@
+<% provide(:title, "Support Tickets") %>
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1><%= yield(:title) %></h1>
+      <p>Open a support ticket and view past tickets.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#openTicket" aria-expanded="false" aria-controls="openTicket">Open New Ticket</button>
+    </div>
+  </div>
+  <div id="openTicket" class="collapse">
+    <%= render "tickets/new" %>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Open Tickets</h2>
+      <table class="table">
+        <tr>
+          <th>Subject</th>
+          <th>Created</th>
+          <th colspan="2"></th>
+        </tr>
+        <% @tickets.each do |ticket| %>
+          <% if ticket.status != "Closed" %>
+            <tr>
+              <td><%= link_to ticket.title, ticket_path(ticket.id) %></td>
+              <td><%= ticket.created_at.strftime("%H:%M, %B %d, %Y") %></td>
+              <td><%= ticket.status %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      <h2>Closed Tickets</h2>
+      <table class="table">
+        <tr>
+          <th>Subject</th>
+          <th>Created</th>
+          <th colspan="2"></th>
+        </tr>
+        <% @tickets.each do |ticket| %>
+          <% if ticket.status == "Closed" %>
+            <tr>
+              <td><%= link_to ticket.title, ticket_path(ticket.id) %></td>
+              <td><%= ticket.created_at.strftime("%H:%M, %B %d, %Y") %></td>
+              <td><%= ticket.status %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

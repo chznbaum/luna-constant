@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :invitations, :class_name => :user, :as => :invited_by
   has_many :photos, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :tickets, dependent: :destroy
 
   def first_name
     self.name.split.first

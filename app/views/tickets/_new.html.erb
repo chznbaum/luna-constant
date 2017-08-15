@@ -1,0 +1,16 @@
+<%= form_for @ticket do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'Subject' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :status, value: 'Open' %>
+  <%= f.fields_for :ticket_messages, @ticket.ticket_messages do |tf| %>
+    <div class="form-group">
+      <%= tf.label :message %>
+      <%= tf.text_area :message, class: 'form-control' %>
+    </div>
+    <%= tf.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+  <%= f.submit 'Open Ticket', class: 'btn btn-primary' %>
+<% end %>

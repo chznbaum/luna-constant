@@ -1,31 +1,62 @@
 <% provide(:title, "Frequently Asked Questions") %>
 <div class="container">
   <h1><%= yield(:title) %></h1>
+  <h2>General</h2>
+  <div class="panel-group" id="general-accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="generalHeadingOne">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#general-accordion" href="#generalCollapseOne" aria-expanded="false" aria-controls="generalCollapseOne">
+          Help!
+          </a>
+        </h4>
+      </div>
+      <div id="generalCollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="generalHeadingOne">
+        <div class="panel-body">
+          <p>Not to worry. If you have any questions or concerns, you can <%= link_to 'open a support ticket', tickets_path %> and get the help you need.</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="generalHeadingTwo">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#general-accordion" href="#generalCollapseTwo" aria-expanded="false" aria-controls="generalCollapseTwo">
+          This site would be so much better if ...
+          </a>
+        </h4>
+      </div>
+      <div id="generalCollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="generalHeadingTwo">
+        <div class="panel-body">
+          <p>You're probably right! If you think a feature would improve this website, please feel free to <%= link_to 'open a support ticket', tickets_path %> and let us know!</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <h2>Signing Up</h2>
   <div class="panel-group" id="signing-up-accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingOne">
+      <div class="panel-heading" role="tab" id="signingUpHeadingOne">
         <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#signing-up-accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <a role="button" data-toggle="collapse" data-parent="#signing-up-accordion" href="#signingUpCollapseOne" aria-expanded="false" aria-controls="signingUpCollapseOne">
           How do I sign up?
           </a>
         </h4>
       </div>
-      <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div id="signingUpCollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="signingUpHeadingOne">
         <div class="panel-body">
           <p>This website is invitation-only to ensure only family and friends of <%= @mom_name %> and <%= @child_name %> have access. You can <%= link_to 'request an invitation here', new_request_path %>.</p>
         </div>
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingTwo">
+      <div class="panel-heading" role="tab" id="signingUpHeadingTwo">
         <h4 class="panel-title">
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#signing-up-accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#signing-up-accordion" href="#signingUpCollapseTwo" aria-expanded="false" aria-controls="signingUpCollapseTwo">
           I just got an invitation. What do I do?
           </a>
         </h4>
       </div>
-      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div id="signingUpCollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="signingUpHeadingTwo">
         <div class="panel-body">
           <p>Click the link in the invitation to accept the invite. You will be taken to a page where you will need to set your password.</p>
         </div>
@@ -35,14 +66,14 @@
   <h2>Comments</h2>
   <div class="panel-group" id="comments-accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingOne">
+      <div class="panel-heading" role="tab" id="commentsHeadingOne">
         <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#comments-accordion" href="#commentsCollapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <a role="button" data-toggle="collapse" data-parent="#comments-accordion" href="#commentsCollapseOne" aria-expanded="false" aria-controls="commentsCollapseOne">
           Why isn't my picture next to my comments?
           </a>
         </h4>
       </div>
-      <div id="commentsCollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div id="commentsCollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="commentsHeadingOne">
         <div class="panel-body">
           <p>If you haven't set an avatar already, this site will try to find your picture for you from <%= link_to 'Gravatar', 'https://en.gravatar.com/' %>, a service used by WordPress and other sites.</p>
           <p>If you don't have a Gravatar either, the Gravatar default icon will appear instead:</p>

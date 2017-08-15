@@ -1,0 +1,16 @@
+<p>Hi,</p>
+
+<p>A user, <%= @user.name %>, replied to a ticket titled: <%= @title %>.</p>
+
+<p><strong>Message:</strong></p>
+
+<blockquote><%= @message %></blockquote>
+
+<p>You can <%= link_to 'view the reply here', ticket_url(@ticket.id) %>.</p>
+
+<p>Thanks,</p>
+
+<p>Chazona Baum<br/>
+Tatiana's sister</p>
+
+<p>P.S.: I am managing this website for Tatiana. If you have any questions or concerns, or notice any buggy site behavior, please feel free to contact me at <%= link_to 'chazona@chazonabaum.com', 'mailto:chazona@chazonabaum.com' %> rather than Tatiana directly.</p>

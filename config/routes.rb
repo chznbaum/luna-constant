@@ -16,9 +16,17 @@ Rails.application.routes.draw do
   get '/users/index', to: 'users#index', :as => 'users'
 
   get '/request-invitation', to: 'requests#new', as: 'new_request'
-  post 'request-invitation', to: 'requests#create', as: 'create_request'
+  post '/request-invitation', to: 'requests#create', as: 'create_request'
 
   get '/faq', to: 'pages#faq', as: 'faq'
+
+  resources :tickets do
+    post '/', to: 'ticket_messages#create', as: 'create_ticket_message'
+  end
+
+  post '/new_ticket' => 'tickets#new_ticket'
+  get '/ticket_close' => 'tickets#close_ticket'
+  get '/ticket_open' => 'tickets#open_ticket'
   
   root 'pages#home'
 

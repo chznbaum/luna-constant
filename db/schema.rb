@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814004912) do
+ActiveRecord::Schema.define(version: 20170814171806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,25 @@ ActiveRecord::Schema.define(version: 20170814004912) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.index ["user_id"], name: "index_photos_on_user_id"
+  end
+
+  create_table "ticket_messages", force: :cascade do |t|
+    t.text "message"
+    t.bigint "ticket_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_ticket_messages_on_ticket_id"
+    t.index ["user_id"], name: "index_ticket_messages_on_user_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,4 +84,7 @@ ActiveRecord::Schema.define(version: 20170814004912) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "photos", "users"
+  add_foreign_key "ticket_messages", "tickets"
+  add_foreign_key "ticket_messages", "users"
+  add_foreign_key "tickets", "users"
 end
