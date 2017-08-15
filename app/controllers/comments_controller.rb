@@ -7,10 +7,22 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new(comment_params)
+    @parent = @commentable
+    until @parent.is_a?(Photo)
+      @parent = @parent.commentable
+    end
 
     respond_to do |format|    
       if @comment.save
-        format.html { redirect_to photos_url, notice: 'Your comment was successfully posted.' }
+        if @commentable.is_a?(Comment)
+          replying_to = @commentable.user
+          prior_message = @commentable.body
+          message = @comment.body
+          commenter = User.find_by(params[:user_id])
+          comment_parent = @parent
+          UserMailer.comment_reply_notification(replying_to, prior_message, message, commenter, comment_parent).deliver_now
+        end
+        format.html { redirect_to @parent, notice: 'Your comment was successfully posted.' }
       else
         format.html { render :new }
       end

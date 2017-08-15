@@ -1,12 +1,14 @@
 Hi,
 
-A user, <%= @user.name %>, submitted a ticket titled: <%= @title %>.
+You received a reply by <%= @commenter.name %> on your comment:
 
-Message:
+"<%= @prior_message %>"
+
+They replied:
 
 "<%= @message %>"
 
-You can <%= link_to 'view the reply here', ticket_url(@ticket.id) %>.
+You can <%= link_to 'view the conversation here', photo_url(@parent.id) %>.
 
 Thanks,
 
