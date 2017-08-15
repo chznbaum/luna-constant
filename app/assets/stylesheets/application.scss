@@ -73,3 +73,12 @@ body {
   height: 24px;
   display: inline-block;
 }
+.home-background {
+  background-image: url('https://s3.amazonaws.com/chazona-general-storage-bucket/lunaconstant/shutterstock_258297743.jpg');
+  background-repeat: none;
+  background-size: cover;
+  background-position: center center;
+}
+.home-jumbotron {
+  background-color: rgba(238,238,238,0.5);
+}
