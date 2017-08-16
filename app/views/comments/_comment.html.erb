@@ -6,6 +6,9 @@
   <% end %>
 </div>
 <div class="media-body">
+  <% if comment.commentable.is_a?(Comment) %>
+  <p><small><em>Replying to <%= comment.commentable.user.name %></em></small></p>
+  <% end %>
   <p><%= comment.body %></p>
   <p><small>Posted <%= time_ago_in_words(comment.created_at) %> ago by <strong><%= comment.user.name %></strong></small></p>
   <%= form_for [comment, Comment.new] do |f| %>
