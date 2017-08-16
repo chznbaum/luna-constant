@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
           replying_to = @commentable.user
           prior_message = @commentable.body
           message = @comment.body
-          commenter = User.find_by(params[:user_id])
+          commenter = User.find_by(id: @comment.user_id)
           comment_parent = @parent
           UserMailer.comment_reply_notification(replying_to, prior_message, message, commenter, comment_parent).deliver_now
         end
