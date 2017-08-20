@@ -7,6 +7,6 @@ class RequestMailer < ApplicationMailer
   #
   def request_invitation(request)
     @request = request
-    mail to: "chazona@chazonabaum.com", from: @request.email, subject: "Invitation Request from #{@request.name} <#{@request.email}>"
+    mail to: @admin_email, from: @request.email, subject: "Invitation Request from #{@request.name} <#{@request.email}>"
   end
 end

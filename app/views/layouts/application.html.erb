@@ -11,7 +11,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body <% if current_page?(root_url) %> class="home-background" <% end %>>
+  <body <% if current_page?(root_url) %> class="home-background" style="background-image: url(<%= @background_image %>);" <% end %>>
     <%= link_to 'Skip to main content', '#content', class: 'sr-only sr-only-focusable' %>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -21,7 +21,7 @@
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
           </button>
-          <%= link_to "#{@child_name}'s Photo Site", root_url, class: 'navbar-brand' %>
+          <%= link_to @site_title, root_url, class: 'navbar-brand' %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -98,7 +98,7 @@
     </main>
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">© 2017 <%= @mom_name %>. Developed by <%= link_to 'Chazona Baum', 'https://chazonabaum.com' %>.</p>
+        <p class="text-muted">© 2017 <%= @mom_name %>. Developed by <%= link_to @developer_name, @developer_url %>.</p>
       </div>
     </footer>
   </body>

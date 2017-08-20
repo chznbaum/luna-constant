@@ -18,7 +18,7 @@ class TicketMessagesController < ApplicationController
         redirect_to ticket_path(params[:ticket_id]), notice: "Your message was posted."
       else
         flash.alert = "Error! Please try again."
-        redirect_to :back
+        redirect_to @ticket
       end
     else
       flash.alert = "The ticket is closed!"

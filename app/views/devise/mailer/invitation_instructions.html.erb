@@ -1,6 +1,6 @@
 <p>Hello <%= @resource.first_name %>,</p>
 
-<p>Someone has invited you to <%= root_url %>, the private photo-sharing website for Tatiana Constant's new daughter Luna. You can accept it through the link below.</p>
+<p>Someone has invited you to <%= root_url %>, the private photo-sharing website for <%= @mom_name %>'s child <%= @child_name %>. You can accept it through the link below.</p>
 
 <p><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></p>
 
@@ -12,7 +12,6 @@
 
 <p>Thanks,</p>
 
-<p>Chazona Baum<br />
-Tatiana's sister</p>
+<p><%= @admin_name %></p>
 
-<p>P.S.: I am managing this website for Tatiana. If you have any questions or concerns, or notice any buggy site behavior, please feel free to contact me at <%= link_to 'chazona@chazonabaum.com', 'mailto:chazona@chazonabaum.com' %> rather than Tatiana directly.</p>
+<p>P.S.: If you have any questions or concerns, or notice any buggy site behavior, please feel free to contact me at <%= link_to @support_email, "mailto:#{ @support_email }" %> rather than <%= @mom_name %> directly.</p>

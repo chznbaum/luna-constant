@@ -1,6 +1,6 @@
 Hello,
 
-Someone has requested an invitation to <%= root_url %>, the private photo-sharing website for Tatiana Constant's new daughter Luna. You can review the details below.
+Someone has requested an invitation to <%= root_url %>, the private photo-sharing website for <%= @mom_name %>'s child <%= @child_name %>. You can review the details below.
 
 Name: <%= @request.name %>
 Email: <%= @request.email %>
@@ -12,7 +12,6 @@ If the information they provided seems legitimate, you can invite them at:
 
 Thanks,
 
-Chazona Baum
-Tatiana's sister
+<%= @admin_name %>
 
-P.S.: I am managing this website for Tatiana. If you have any questions or concerns, or notice any buggy site behavior, please feel free to contact me at <%= link_to 'chazona@chazonabaum.com', 'mailto:chazona@chazonabaum.com' %> rather than Tatiana directly.
+P.S.: If you have any questions or concerns, or notice any buggy site behavior, please feel free to contact me at <%= link_to @support_email, "mailto:#{ @support_email }" %> rather than <%= @mom_name %> directly.

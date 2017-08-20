@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'chazona@chazonabaum.com'
+  default from: @support_email
 
   def comment_reply_notification(replying_to, prior_message, message, commenter, comment_parent)
     @replying_to = replying_to
@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
     @message = message
     @commenter = commenter
     @parent = comment_parent
-    mail(to: @replying_to.email, subject: '[LunaConstant.com] A user replied to your comment.')
+    mail(to: @replying_to.email, subject: "[#{ @email_prefix }] A user replied to your comment.")
   end
 
   def like_notification(liked_user, message, liker, like_parent)
@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
     @message = message
     @liker = liker
     @parent = like_parent
-    mail(to: @liked_user.email, subject: '[LunaConstant.com] A user liked your comment.')
+    mail(to: @liked_user.email, subject: "[#{ @email_prefix }] A user liked your comment.")
   end
 
   def new_ticket_notification(user, message, ticket, title)
@@ -23,7 +23,7 @@ class UserMailer < ApplicationMailer
     @message = message
     @ticket = ticket
     @title = title
-    mail(to: 'chazona@chazonabaum.com', subject: '[LunaConstant.com] A user submitted a ticket.')
+    mail(to: @support_email, subject: "[#{ @email_prefix }] A user submitted a ticket.")
   end
 
   def ticket_message_user_notification(user, admin, message, ticket, title)
@@ -32,7 +32,7 @@ class UserMailer < ApplicationMailer
     @admin = admin
     @ticket = ticket
     @title = title
-    mail(to: user.email, subject: '[LunaConstant.com] Your support ticket has a reply.')
+    mail(to: user.email, subject: "[#{ @email_prefix }] Your support ticket has a reply.")
   end
 
   def ticket_message_admin_notification(user, message, ticket, title)
@@ -40,6 +40,6 @@ class UserMailer < ApplicationMailer
     @message = message
     @ticket = ticket
     @title = title
-    mail(to: 'chazona@chazonabaum.com', subject: '[LunaConstant.com] A user replied to a ticket.')
+    mail(to: @support_email, subject: "[#{ @email_prefix }] A user replied to a ticket.")
   end
 end

@@ -21,7 +21,7 @@ class LikesController < ApplicationController
       end
       redirect_to @parent, notice: "Your like was successful."
     else
-      redirect_to :back, notice: "Your like was unsuccessful."
+      render :new, notice: "Your like was unsuccessful."
     end
   end
 
