@@ -16,6 +16,6 @@ class Photo < ApplicationRecord
   end
 
   def self.by_recent
-    order(created_at: :desc, id: :asc)
+    order(created_at: :desc, id: :desc)
   end
 end
