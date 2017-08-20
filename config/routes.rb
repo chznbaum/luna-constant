@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   resources :photos do
     resources :comments
+    resources :likes
+    member do
+      get :toggle_status
+    end
   end
   resources :comments do
     resources :comments
+    resources :likes
   end
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, :skip => [:registrations], :controllers => { :invitations => 'invitations' }, :protocol => "https"

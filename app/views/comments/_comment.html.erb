@@ -11,14 +11,36 @@
   <% end %>
   <p><%= comment.body %></p>
   <p><small>Posted <%= time_ago_in_words(comment.created_at) %> ago by <strong><%= comment.user.name %></strong></small></p>
-  <%= form_for [comment, Comment.new] do |f| %>
-  <div class="form-group">
-    <%= f.label :body, 'Add a reply' %>
-    <%= f.text_area :body, class: 'form-control' %>
+  <div>
+    <div>
+      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#commentForm<%= comment.id %>" aria-expanded="false" aria-controls="commentForm<%= comment.id %>">
+        <span class="<%= "commented" if comment.comments && comment.comments.find_by(user_id: current_user.id) %>">
+          <i class="fa fa-comment"></i>
+          <%= comment.comments.count %>
+        </span>
+      </button>
+      <%= form_for [comment, Like.new] do |f| %>
+        <%= f.hidden_field :comment_id, value: comment.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= button_tag(type: 'submit', class: 'btn btn-link') do %>
+          <span class="<%= "liked" if comment.likes && comment.likes.find_by(user_id: current_user.id) %>">
+            <i class="fa fa-heart"></i>
+            <%= comment.likes.count %>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit 'Reply', class: 'btn btn-default' %>
-<% end %>
+  <div id="commentForm<%= comment.id %>" class="collapse">
+    <%= form_for [comment, Comment.new] do |f| %>
+      <div class="form-group">
+        <%= f.label :body, 'Add a reply' %>
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit 'Reply', class: 'btn btn-default' %>
+    <% end %>
+  </div>
 </div>
 
 <div class="media comment">

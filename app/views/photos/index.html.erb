@@ -4,7 +4,9 @@
     <div class="col-xs-12">
       <h1><%= yield(:title) %></h1>
       <p>
-        <%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary', role: 'button' %>
+        <%= link_to new_photo_path, role: 'button', class: 'btn btn-primary' do %>
+          <i class="fa fa-plus"></i> Add Photo
+        <% end %>
       </p>
     </div>
   </div>
@@ -21,11 +23,53 @@
             <%= image_tag photo.photo_upload, class: "thumb" %>
           <% end %>
           <div class="caption">
-            <p><%= photo.caption %></p>
-            <p>Taken <%= distance_of_time_in_words(photo.created_at, Time.now) %> ago | <%= pluralize(photo.comments.count, "comment") %></p>
-            <p><%= link_to 'Show', photo, class: 'btn btn-primary', role: 'button' %>
-            <%= link_to 'Edit', edit_photo_path(photo), class: 'btn btn-warning', role: 'button' if logged_in?(:site_admin, :helper) %>
-            <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', role: 'button' if logged_in?(:site_admin, :helper) %>
+            <div class="row">
+              <div class="col-xs-12">
+                <p><%= photo.caption %></p>
+                <p><small>Taken <%= distance_of_time_in_words(photo.created_at, Time.now) %> ago</small></p>
+              </div>
+            </div>
+            <div class="card-buttons">
+              <%= link_to photo, role: 'button' do %>
+                <span class="fa-layers <%= "commented" if photo.comments && photo.comments.find_by(user_id: current_user.id) %>">
+                  <i class="fa fa-comment"></i>
+                  <span class="fa-layers-text" data-fa-transform="shrink-5 right-3"><%= photo.comments.count %></span>
+                </span>
+              <% end %>
+              <%= form_for [photo, Like.new] do |f| %>
+                <%= f.hidden_field :photo_id, value: photo.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= button_tag(type: 'submit', class: 'btn btn-link') do %>
+                  <span class="fa-layers <%= "liked" if photo.likes && photo.likes.find_by(user_id: current_user.id) %>">
+                    <i class="fa fa-heart"></i>
+                    <span class="fa-layers-text" data-fa-transform="shrink-5 right-6"><%= photo.likes.count %></span>
+                  </span>
+                <% end %>
+              <% end %>
+              <span class="fa-layers">
+                <% if logged_in?(:site_admin, :helper) %>
+                  <% if photo.status == "Approved" %>
+                    <%= link_to toggle_status_photo_path(photo), role: 'button', style: photo_status_color(photo) do %>
+                      <i class="fa fa-check"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to toggle_status_photo_path(photo), role: 'button', style: photo_status_color(photo) do %>
+                      <i class="fa fa-ellipsis-h"></i>
+                    <% end %>
+                  <% end %>
+                </span>
+                <span class="fa-layers">
+                  <%= link_to edit_photo_path(photo), role: 'button', style: 'color: #f0ad4e;' do %>
+                    <i class="fa fa-pencil-square-o"></i>
+                  <% end %>
+                </span>
+                <span class="fa-layers">
+                  <%= link_to photo, method: :delete, data: { confirm: 'Are you sure you want to delete this photo?' }, role: 'button', style: 'color: #d9534f;' do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
           </div>
         </div>
       </div>

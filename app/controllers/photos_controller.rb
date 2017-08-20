@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :toggle_status]
   before_action :authenticate_user!
   access all: [], user: { except: [:edit, :update, :destroy] }, helper: :all, site_admin: :all
 
@@ -40,6 +40,17 @@ class PhotosController < ApplicationController
       else
         format.html { render :new }
       end
+    end
+  end
+
+  def toggle_status
+    if @photo.Pending?
+      @photo.Approved!
+    elsif @photo.Approved?
+      @photo.Pending!
+    end
+    respond_to do |format|
+      format.html { redirect_to @photo, notice: 'Photo status updated.' }
     end
   end
 

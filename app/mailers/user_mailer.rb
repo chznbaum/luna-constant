@@ -7,7 +7,15 @@ class UserMailer < ApplicationMailer
     @message = message
     @commenter = commenter
     @parent = comment_parent
-    mail(to: @replying_to.email, subject: '[LunaConstant.com] A user replied to your comment.' )
+    mail(to: @replying_to.email, subject: '[LunaConstant.com] A user replied to your comment.')
+  end
+
+  def like_notification(liked_user, message, liker, like_parent)
+    @liked_user = liked_user
+    @message = message
+    @liker = liker
+    @parent = like_parent
+    mail(to: @liked_user.email, subject: '[LunaConstant.com] A user liked your comment.')
   end
 
   def new_ticket_notification(user, message, ticket, title)
